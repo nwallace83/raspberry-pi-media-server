@@ -14,8 +14,8 @@ services:
       - TZ=America/Denver
       - PLEX_CLAIM=ABC123ABC123ABC
       - ADVERTISE_IP=192.168.1.5:32400,forbes.nwallace.io:32400
-      - PLEX_UID=1000
-      - PLEX_GID=1000
+      - PUID=1000
+      - PGID=1000
     volumes:
       - /media/tv:/tv
       - /media/movies:/movies
