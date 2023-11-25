@@ -12,7 +12,7 @@ services:
       - 32400:32400
     environment:
       - TZ=America/Denver
-      - PLEX_CLAIM=ABC123ABC123ABC
+      #- PLEX_CLAIM=ABC123ABC123ABC
       - ADVERTISE_IP=192.168.1.5:32400,forbes.nwallace.io:32400
       - PUID=1000
       - PGID=1000
