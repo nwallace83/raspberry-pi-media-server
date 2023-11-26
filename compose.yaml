@@ -99,8 +99,6 @@ services:
     hostname: wireguard
     labels:
       - com.centurylinklabs.watchtower.enable=true
-    networks:
-      - media
     ports:
       - 51820:51820/udp
     environment:
