@@ -10,7 +10,6 @@ services:
     environment:
       - TZ=America/Denver
       #- PLEX_CLAIM=ABC123ABC123ABC
-      - ADVERTISE_IP=192.168.1.5:32400,forbes.nwallace.io:32400
       - PUID=1000
       - PGID=1000
     volumes:
@@ -103,7 +102,7 @@ services:
     networks:
       - media
     ports:
-      - 51820:51820
+      - 51820:51820/udp
     environment:
       - TZ=America/Denver
       - PUID=1000
