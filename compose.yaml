@@ -110,8 +110,10 @@ services:
       - SERVERURL=forbes.nwallace.io
       - PEERS=5
       - ALLOWEDIPS=192.168.1.0/24
+      - PEERDNS=1.1.1.1
     volumes:
       - /docker/wireguard/config:/config
+      - /lib/modules:/lib/modules
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
