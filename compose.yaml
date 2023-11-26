@@ -110,7 +110,7 @@ services:
       - PGID=1000
       - SERVERURL=forbes.nwallace.io
       - PEERS=5
-      - ALLOWEDIPS=192.168.1.0/16
+      - ALLOWEDIPS=192.168.1.0/24
     volumes:
       - /docker/wireguard/config:/config
     cap_add:
