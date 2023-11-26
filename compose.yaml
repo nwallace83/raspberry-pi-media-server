@@ -6,10 +6,7 @@ services:
     hostname: plex
     labels:
       - com.centurylinklabs.watchtower.enable=true
-    networks:
-      - media
-    ports:
-      - 32400:32400
+    network_mode: host
     environment:
       - TZ=America/Denver
       #- PLEX_CLAIM=ABC123ABC123ABC
@@ -47,6 +44,8 @@ services:
       - com.centurylinklabs.watchtower.enable=true
     networks:
       - media
+    extra_hosts:
+      - host.docker.internal:172.17.0.1
     ports:
       - 7878:7878
     environment:
@@ -65,6 +64,8 @@ services:
       - com.centurylinklabs.watchtower.enable=true
     networks:
       - media
+    extra_hosts:
+      - host.docker.internal:172.17.0.1
     ports:
       - 8989:8989
     environment:
