@@ -11,12 +11,13 @@ services:
       - TZ=America/Denver
       #- PLEX_CLAIM=ABC123ABC123ABC
       - PUID=1000
-      - PGID=1000
+      - PGID=1003
     volumes:
       - /media/tv:/tv
       - /media/movies:/movies
-      - /docker/plex/config:/config
-      - /docker/plex/transcode:/transcode
+      - /media/docker/plex/config:/config
+    tmpfs:
+      - /transcode
   prowlarr:
     container_name: prowlarr
     image: linuxserver/prowlarr:latest
@@ -31,9 +32,9 @@ services:
     environment:
       - TZ=America/Denver
       - PUID=1000
-      - PGID=1000
+      - PGID=1003
     volumes:
-      - /docker/prowlarr/config:/config
+      - /media/docker/prowlarr/config:/config
   radarr:
     container_name: radarr
     image: linuxserver/radarr:latest
@@ -50,9 +51,9 @@ services:
     environment:
       - TZ=America/Denver
       - PUID=1000
-      - PGID=1000
+      - PGID=1003
     volumes:
-      - /docker/radarr/config:/config
+      - /media/docker/radarr/config:/config
       - /media:/media
   sonarr:
     container_name: sonarr
@@ -70,9 +71,9 @@ services:
     environment:
       - TZ=America/Denver
       - PUID=1000
-      - PGID=1000
+      - PGID=1003
     volumes:
-      - /docker/sonarr/config:/config
+      - /media/docker/sonarr/config:/config
       - /media:/media
   bazarr:
     container_name: bazarr
@@ -88,10 +89,25 @@ services:
     environment:
       - TZ=America/Denver
       - PUID=1000
-      - PGID=1000
+      - PGID=1003
     volumes:
-      - /docker/bazarr/config:/config
+      - /media/docker/bazarr/config:/config
       - /media:/media
+  flaresolverr:
+    container_name: flaresolverr
+    image: flaresolverr/flaresolverr
+    restart: unless-stopped
+    hostname: flaresolverr
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+    networks:
+      - media
+    ports:
+      - 8191:8191
+    environment:
+      - TZ=America/Denver
+      - PUID=1000
+      - PGID=1003
   wireguard:
     container_name: wireguard
     image: linuxserver/wireguard:latest
@@ -104,13 +120,13 @@ services:
     environment:
       - TZ=America/Denver
       - PUID=1000
-      - PGID=1000
+      - PGID=1003
       - SERVERURL=forbes.nwallace.io
       - PEERS=5
       - ALLOWEDIPS=192.168.1.0/24
       - PEERDNS=1.1.1.1
     volumes:
-      - /docker/wireguard/config:/config
+      - /media/docker/wireguard/config:/config
       - /lib/modules:/lib/modules
     cap_add:
       - NET_ADMIN
@@ -133,7 +149,7 @@ services:
     environment:
       - TZ=America/Denver
       - PUID=1000
-      - PGID=1000
+      - PGID=1003
       - DEBUG=false
       - LAN_NETWORK=192.168.0.0/16
       - NAME_SERVERS=84.200.69.80,37.235.1.174,1.1.1.1,37.235.1.177,84.200.70.40,1.0.0.1
@@ -148,7 +164,7 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     privileged: true
     volumes:
-      - /docker/delugevpn/config:/config
+      - /media/docker/delugevpn/config:/config
       - /media:/media
   watchtower:
     container_name: watchtower
