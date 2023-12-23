@@ -15,7 +15,7 @@ services:
     volumes:
       - /media/tv:/tv
       - /media/movies:/movies
-      - /media/docker/plex/config:/config
+      - /docker/plex/config:/config
     tmpfs:
       - /transcode
   prowlarr:
@@ -34,7 +34,7 @@ services:
       - PUID=1000
       - PGID=1003
     volumes:
-      - /media/docker/prowlarr/config:/config
+      - /docker/prowlarr/config:/config
   radarr:
     container_name: radarr
     image: linuxserver/radarr:latest
@@ -53,7 +53,7 @@ services:
       - PUID=1000
       - PGID=1003
     volumes:
-      - /media/docker/radarr/config:/config
+      - /docker/radarr/config:/config
       - /media:/media
   sonarr:
     container_name: sonarr
@@ -73,7 +73,7 @@ services:
       - PUID=1000
       - PGID=1003
     volumes:
-      - /media/docker/sonarr/config:/config
+      - /docker/sonarr/config:/config
       - /media:/media
   bazarr:
     container_name: bazarr
@@ -91,7 +91,7 @@ services:
       - PUID=1000
       - PGID=1003
     volumes:
-      - /media/docker/bazarr/config:/config
+      - /docker/bazarr/config:/config
       - /media:/media
   flaresolverr:
     container_name: flaresolverr
@@ -126,7 +126,7 @@ services:
       - ALLOWEDIPS=192.168.1.0/24
       - PEERDNS=1.1.1.1
     volumes:
-      - /media/docker/wireguard/config:/config
+      - /docker/wireguard/config:/config
       - /lib/modules:/lib/modules
     cap_add:
       - NET_ADMIN
@@ -164,7 +164,7 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     privileged: true
     volumes:
-      - /media/docker/delugevpn/config:/config
+      - /docker/delugevpn/config:/config
       - /media:/media
   watchtower:
     container_name: watchtower
